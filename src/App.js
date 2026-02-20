@@ -84,7 +84,7 @@ export default function Portfolio() {
       {/* Header */}
       <header className="mb-10 text-center">
         <img
-          src="profile.jpeg"
+          src="profile.png"
           alt="Manish Neupane"
           className="mx-auto mb-4 rounded-full border-2 border-gray-300 w-28 h-28 object-cover"
         />
