@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+const TABS = ["About", "Projects", "Experience", "Skills", "Education", "Honors", "Contact"];
+
 const skills = {
   Programming: ["Python", "C/C++", "MATLAB", "JavaScript"],
   "Scientific Computing": ["NumPy", "SciPy", "PyTorch", "CUDA"],
@@ -79,6 +81,7 @@ const recognition = [
 ];
 
 export default function Portfolio() {
+  const [activeTab, setActiveTab] = useState("About");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -88,10 +91,7 @@ export default function Portfolio() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -100,14 +100,11 @@ export default function Portfolio() {
       setFormStatus("Please fill in all fields.");
       return;
     }
-    
-    // Create mailto link as fallback
     const subject = encodeURIComponent(`Contact from ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     );
     window.location.href = `mailto:manishneupane0909@gmail.com?subject=${subject}&body=${body}`;
-    
     setFormStatus("Opening your email client...");
     setTimeout(() => {
       setFormData({ name: "", email: "", message: "" });
@@ -116,162 +113,134 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              MN
-            </div>
-            <div className="flex gap-6">
-              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-              <a href="#projects" className="text-gray-700 hover:text-blue-600 transition-colors">Projects</a>
-              <a href="#experience" className="text-gray-700 hover:text-blue-600 transition-colors">Experience</a>
-              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
-            </div>
+    <div className="min-h-screen bg-black text-gray-200">
+      {/* Tab bar */}
+      <nav className="sticky top-0 z-50 bg-black/95 border-b border-gray-800">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex items-center gap-1 overflow-x-auto py-2 scrollbar-hide">
+            {TABS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-4 py-3 text-sm font-medium rounded-lg whitespace-nowrap transition-colors ${
+                  activeTab === tab
+                    ? "bg-gray-700 text-white"
+                    : "text-gray-400 hover:text-white hover:bg-gray-800"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
         </div>
       </nav>
 
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Header */}
-        <header id="about" className="mb-16 text-center animate-fade-in">
-          <div className="relative inline-block mb-6">
-            <img
-              src="profile.png"
-              alt="Manish Neupane"
-              className="mx-auto rounded-full border-4 border-white shadow-xl w-36 h-36 object-cover hover:scale-105 transition-transform duration-300"
-            />
-            <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
-              ✓
+      <main className="max-w-4xl mx-auto px-4 py-8">
+        {activeTab === "About" && (
+          <div className="animate-fade-in">
+            <div className="text-center mb-8">
+              <img
+                src="profile.png"
+                alt="Manish Neupane"
+                className="mx-auto rounded-full border-2 border-gray-600 w-32 h-32 object-cover mb-6"
+              />
+              <h1 className="text-3xl font-bold text-white mb-2">Manish Neupane</h1>
+              <p className="text-gray-400 font-medium mb-2">Physics × Computer Science</p>
+              <p className="text-gray-500 max-w-xl mx-auto mb-6">
+                Building production systems from physics research—from 80% faster lab pipelines to 99% uptime autonomous fleets
+              </p>
+              <div className="flex justify-center gap-4 flex-wrap">
+                <a
+                  href="mailto:manishneupane0909@gmail.com"
+                  className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                >
+                  Email
+                </a>
+                <a
+                  href="https://github.com/manishneupane0909-eng"
+                  className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/manish-neupane-380a65189"
+                  className="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+            <div className="p-6 rounded-xl bg-gray-900 border border-gray-800">
+              <p className="text-gray-300 leading-relaxed">
+                I architect solutions for complex systems—whether optimizing neural networks under physical constraints or scaling lab automation to production. This interdisciplinary foundation gives me an edge in ML research, scientific computing, and data-intensive applications where rigorous problem-solving meets scalable engineering.
+              </p>
             </div>
           </div>
-          <h1 className="text-5xl font-bold mb-3 bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent">
-            Manish Neupane
-          </h1>
-          <div className="text-xl text-gray-700 font-medium mb-3">
-            Physics × Computer Science
-          </div>
-          <div className="text-gray-600 max-w-2xl mx-auto mb-6 text-lg">
-            Building production systems from physics research—from 80% faster lab pipelines to 99% uptime autonomous fleets
-          </div>
-          <div className="flex justify-center gap-6 flex-wrap">
-            <a
-              href="mailto:manishneupane0909@gmail.com"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-            >
-              📧 Email
-            </a>
-            <a
-              href="https://github.com/manishneupane0909-eng"
-              className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              💻 GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/manish-neupane-380a65189"
-              className="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              💼 LinkedIn
-            </a>
-          </div>
-        </header>
+        )}
 
-        {/* Positioning Statement */}
-        <section className="mb-16 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl border-l-4 border-blue-500 shadow-md hover:shadow-xl transition-shadow duration-300">
-          <p className="text-gray-800 leading-relaxed text-lg">
-            I architect solutions for complex systems—whether optimizing neural networks under physical constraints or scaling lab automation to production. This interdisciplinary foundation gives me an edge in ML research, scientific computing, and data-intensive applications where rigorous problem-solving meets scalable engineering.
-          </p>
-        </section>
-
-        {/* Projects */}
-        <section id="projects" className="mb-16 scroll-mt-20">
-          <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Selected Projects
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((p, idx) => (
+        {activeTab === "Projects" && (
+          <div className="animate-fade-in space-y-6">
+            {projects.map((p) => (
               <div
                 key={p.name}
-                className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 p-6 border border-gray-200 hover:-translate-y-2 group"
-                style={{ animationDelay: `${idx * 100}ms` }}
+                className="p-6 rounded-xl bg-gray-900 border border-gray-800 hover:border-gray-700 transition-colors"
               >
-                <div className="font-bold text-lg mb-2 text-gray-900 group-hover:text-blue-600 transition-colors">
-                  {p.name}
-                </div>
-                <div className="text-gray-600 mb-4 text-sm leading-relaxed">{p.desc}</div>
-                <ul className="ml-4 list-disc text-gray-700 space-y-1 mb-4 text-sm">
+                <h3 className="font-bold text-lg text-white mb-2">{p.name}</h3>
+                <p className="text-gray-400 text-sm mb-4">{p.desc}</p>
+                <ul className="ml-4 list-disc text-gray-400 space-y-1 mb-4 text-sm">
                   {p.bullets.map((b, i) => (
-                    <li key={i} className="hover:text-gray-900 transition-colors">{b}</li>
+                    <li key={i}>{b}</li>
                   ))}
                 </ul>
                 <a
                   href={p.link}
-                  className="inline-flex items-center text-blue-600 text-sm font-semibold hover:text-blue-700 transition-colors group-hover:gap-2 gap-1"
+                  className="text-cyan-400 hover:text-cyan-300 text-sm font-medium"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  View on GitHub
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                  View on GitHub →
                 </a>
               </div>
             ))}
           </div>
-        </section>
+        )}
 
-        {/* Experience */}
-        <section id="experience" className="mb-16 scroll-mt-20">
-          <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Experience
-          </h2>
-          <div className="space-y-6">
-            {experience.map((role, idx) => (
+        {activeTab === "Experience" && (
+          <div className="animate-fade-in space-y-6">
+            {experience.map((role) => (
               <div
                 key={role.role}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border-l-4 border-blue-500 hover:border-purple-500 group"
-                style={{ animationDelay: `${idx * 100}ms` }}
+                className="p-6 rounded-xl bg-gray-900 border border-gray-800 border-l-4 border-l-cyan-500"
               >
-                <div className="font-bold text-xl mb-1 text-gray-900 group-hover:text-blue-600 transition-colors">
-                  {role.role}
-                </div>
-                <div className="text-blue-600 text-sm mb-3 font-medium">
-                  {role.org} • {role.time}
-                </div>
-                <ul className="ml-4 list-disc text-gray-700 space-y-2">
+                <h3 className="font-bold text-lg text-white">{role.role}</h3>
+                <p className="text-cyan-400 text-sm mb-3">{role.org} • {role.time}</p>
+                <ul className="ml-4 list-disc text-gray-400 space-y-2 text-sm">
                   {role.desc.map((l, i) => (
-                    <li key={i} className="hover:text-gray-900 transition-colors">{l}</li>
+                    <li key={i}>{l}</li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-        </section>
+        )}
 
-        {/* Skills */}
-        <section className="mb-16">
-          <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Technical Skills
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {Object.entries(skills).map(([cat, arr], idx) => (
+        {activeTab === "Skills" && (
+          <div className="animate-fade-in grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {Object.entries(skills).map(([cat, arr]) => (
               <div
                 key={cat}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 hover:border-blue-300 group"
-                style={{ animationDelay: `${idx * 50}ms` }}
+                className="p-6 rounded-xl bg-gray-900 border border-gray-800"
               >
-                <span className="font-bold text-lg text-gray-900 group-hover:text-blue-600 transition-colors block mb-3">
-                  {cat}
-                </span>
+                <h3 className="font-bold text-white mb-3">{cat}</h3>
                 <div className="flex flex-wrap gap-2">
                   {arr.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-gradient-to-r from-blue-50 to-purple-50 text-gray-700 rounded-full text-sm hover:from-blue-100 hover:to-purple-100 transition-all duration-200 hover:scale-105"
+                      className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm"
                     >
                       {skill}
                     </span>
@@ -280,116 +249,92 @@ export default function Portfolio() {
               </div>
             ))}
           </div>
-        </section>
+        )}
 
-        {/* Education */}
-        <section className="mb-16">
-          <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Education
-          </h2>
-          <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-8 border border-gray-200">
-            <div className="font-bold text-2xl mb-2 text-gray-900">B.S. Physics & Computer Science</div>
-            <div className="text-blue-600 text-lg mb-4 font-medium">
-              South Dakota State University • Expected May 2026
-            </div>
-            <div className="text-gray-700 leading-relaxed">
-              <span className="font-semibold">Relevant coursework:</span> Data Structures, Machine Learning, Software Engineering, Cloud Computing, Computational Physics, Mathematical Physics, Quantum Mechanics, Statistical Mechanics
-            </div>
+        {activeTab === "Education" && (
+          <div className="animate-fade-in p-6 rounded-xl bg-gray-900 border border-gray-800">
+            <h3 className="font-bold text-xl text-white mb-2">B.S. Physics & Computer Science</h3>
+            <p className="text-cyan-400 mb-4">South Dakota State University • Expected May 2026</p>
+            <p className="text-gray-400 leading-relaxed">
+              <span className="text-gray-300 font-medium">Relevant coursework:</span> Data Structures, Machine Learning, Software Engineering, Cloud Computing, Computational Physics, Mathematical Physics, Quantum Mechanics, Statistical Mechanics
+            </p>
           </div>
-        </section>
+        )}
 
-        {/* Recognition */}
-        <section className="mb-16">
-          <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Honors & Recognition
-          </h2>
-          <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200">
+        {activeTab === "Honors" && (
+          <div className="animate-fade-in p-6 rounded-xl bg-gray-900 border border-gray-800">
             <ul className="space-y-3">
-              {recognition.map((r, idx) => (
-                <li
-                  key={r}
-                  className="flex items-start gap-3 text-gray-700 hover:text-gray-900 transition-colors"
-                >
-                  <span className="text-blue-600 font-bold mt-1">★</span>
+              {recognition.map((r) => (
+                <li key={r} className="flex items-start gap-3 text-gray-400">
+                  <span className="text-cyan-400 mt-0.5">★</span>
                   <span>{r}</span>
                 </li>
               ))}
             </ul>
           </div>
-        </section>
+        )}
 
-        {/* Contact Form */}
-        <section id="contact" className="mb-16 scroll-mt-20">
-          <h2 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Get In Touch
-          </h2>
-          <div className="max-w-2xl mx-auto">
+        {activeTab === "Contact" && (
+          <div className="animate-fade-in max-w-xl mx-auto">
             <form
               onSubmit={handleSubmit}
-              className="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow duration-300"
+              className="p-6 rounded-xl bg-gray-900 border border-gray-800"
             >
-              <div className="mb-6">
-                <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">
-                  Name
-                </label>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-gray-300 font-medium mb-2">Name</label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                   placeholder="Your name"
                 />
               </div>
-              <div className="mb-6">
-                <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
-                  Email
-                </label>
+              <div className="mb-4">
+                <label htmlFor="email" className="block text-gray-300 font-medium mb-2">Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                   placeholder="your.email@example.com"
                 />
               </div>
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">
-                  Message
-                </label>
+              <div className="mb-4">
+                <label htmlFor="message" className="block text-gray-300 font-medium mb-2">Message</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
                   rows="5"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
                   placeholder="Your message..."
                 />
               </div>
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+                className="w-full py-3 px-6 bg-cyan-600 hover:bg-cyan-500 text-white font-medium rounded-lg transition-colors"
               >
                 Send Message
               </button>
               {formStatus && (
-                <p className={`mt-4 text-center ${formStatus.includes("Thank you") ? "text-green-600" : "text-blue-600"}`}>
+                <p className={`mt-4 text-center text-sm ${formStatus.includes("Thank you") ? "text-green-400" : "text-cyan-400"}`}>
                   {formStatus}
                 </p>
               )}
             </form>
           </div>
-        </section>
+        )}
+      </main>
 
-        {/* Footer */}
-        <footer className="mt-16 pt-8 text-center text-gray-500 border-t border-gray-200">
-          <p>© {new Date().getFullYear()} Manish Neupane. All rights reserved.</p>
-        </footer>
-      </div>
+      <footer className="py-6 text-center text-gray-600 text-sm border-t border-gray-800 mt-8">
+        © {new Date().getFullYear()} Manish Neupane
+      </footer>
     </div>
   );
 }
