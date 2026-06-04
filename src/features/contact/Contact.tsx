@@ -88,11 +88,12 @@ export const Contact: React.FC = () => {
     <Container maxWidth="sm" sx={{ py: 4, minHeight: '100vh', overflowY: 'auto' }}>
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
         <Card
-          elevation={10}
+          variant="outlined"
           sx={{
             p: { xs: 2, sm: 3 },
-            background: 'rgba(24,38,44,0.85)',
-            borderRadius: 6,
+            bgcolor: 'background.paper',
+            borderColor: 'rgba(122,162,247,0.18)',
+            borderRadius: 4,
           }}
         >
           <CardContent>
@@ -102,8 +103,8 @@ export const Contact: React.FC = () => {
             >
               Get in Touch
             </Typography>
-            <Typography variant="body2" sx={{ color: '#a8c5ca', textAlign: 'center', mb: 3 }}>
-              Open to Software Engineer, Full-Stack, and Backend roles. I reply fast on email.
+            <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: 'center', mb: 3 }}>
+              Open to Software Engineer, Full-Stack, and Backend roles. I usually reply within a day.
             </Typography>
 
             <Box
@@ -116,19 +117,19 @@ export const Contact: React.FC = () => {
             >
               <Stack direction="row" spacing={1.5} alignItems="center">
                 <EmailIcon fontSize="small" color="primary" />
-                <MuiLink href={`mailto:${EMAIL}`} underline="hover" sx={{ color: '#cddede', fontSize: '0.85rem' }}>
+                <MuiLink href={`mailto:${EMAIL}`} underline="hover" sx={{ color: 'text.primary', fontSize: '0.85rem' }}>
                   {EMAIL}
                 </MuiLink>
               </Stack>
               <Stack direction="row" spacing={1.5} alignItems="center">
                 <PhoneIcon fontSize="small" color="primary" />
-                <MuiLink href={`tel:${PHONE_HREF}`} underline="hover" sx={{ color: '#cddede', fontSize: '0.85rem' }}>
+                <MuiLink href={`tel:${PHONE_HREF}`} underline="hover" sx={{ color: 'text.primary', fontSize: '0.85rem' }}>
                   {PHONE_DISPLAY}
                 </MuiLink>
               </Stack>
               <Stack direction="row" spacing={1.5} alignItems="center">
                 <LocationOnIcon fontSize="small" color="primary" />
-                <Typography sx={{ color: '#cddede', fontSize: '0.85rem' }}>{LOCATION}</Typography>
+                <Typography sx={{ color: 'text.primary', fontSize: '0.85rem' }}>{LOCATION}</Typography>
               </Stack>
               <Stack direction="row" spacing={1.5} alignItems="center">
                 <LanguageIcon fontSize="small" color="primary" />
@@ -137,7 +138,7 @@ export const Contact: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   underline="hover"
-                  sx={{ color: '#cddede', fontSize: '0.85rem' }}
+                  sx={{ color: 'text.primary', fontSize: '0.85rem' }}
                 >
                   {WEBSITE}
                 </MuiLink>

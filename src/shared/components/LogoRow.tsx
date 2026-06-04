@@ -15,12 +15,12 @@ const logos: Logo[] = [
 export const LogoRow: React.FC = () => {
   return (
     <Paper
-      elevation={0}
+      variant="outlined"
       sx={{
         p: 2.5,
         borderRadius: 3,
-        background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.06)',
+        bgcolor: 'transparent',
+        borderColor: 'rgba(255,255,255,0.06)',
       }}
     >
       <Typography
@@ -28,13 +28,13 @@ export const LogoRow: React.FC = () => {
         sx={{
           display: 'block',
           textAlign: 'center',
-          color: '#6b8a8f',
+          color: 'text.secondary',
           fontSize: '0.65rem',
           letterSpacing: '0.15em',
           mb: 2,
         }}
       >
-        Experience & Affiliations
+        Where I&apos;ve worked
       </Typography>
       <Stack
         direction="row"
@@ -64,7 +64,7 @@ export const LogoRow: React.FC = () => {
               sx={{
                 fontWeight: 800,
                 fontSize: '1.3rem',
-                color: '#a8b8bc',
+                color: 'text.primary',
                 letterSpacing: '0.1em',
                 lineHeight: 1,
               }}
@@ -75,7 +75,7 @@ export const LogoRow: React.FC = () => {
               <Typography
                 sx={{
                   fontSize: '0.6rem',
-                  color: '#6b7c80',
+                  color: 'text.secondary',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
                   mt: 0.25,

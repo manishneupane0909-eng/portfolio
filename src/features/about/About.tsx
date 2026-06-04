@@ -19,19 +19,16 @@ import ArticleIcon from '@mui/icons-material/Article';
 interface SkillCategory {
   title: string;
   skills: string[];
-  color: 'primary' | 'secondary';
 }
 
 const skillCategories: SkillCategory[] = [
   {
     title: 'Languages',
     skills: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'C#', 'Java', 'Go', 'C/C++'],
-    color: 'primary',
   },
   {
     title: 'Frameworks',
     skills: ['React', 'FastAPI', 'Django REST Framework', '.NET'],
-    color: 'secondary',
   },
   {
     title: 'Databases / Tools',
@@ -48,17 +45,14 @@ const skillCategories: SkillCategory[] = [
       'Chart.js',
       'Origin',
     ],
-    color: 'primary',
   },
   {
     title: 'Concepts',
     skills: ['Data Structures & Algorithms', 'OOP', 'TDD', 'Clean Code', 'Hardware-Software Integration'],
-    color: 'secondary',
   },
   {
     title: 'ML / Scientific Computing',
     skills: ['PyTorch', 'NumPy', 'SciPy', 'PINNs', 'XRD', 'VSM'],
-    color: 'primary',
   },
 ];
 
@@ -109,21 +103,28 @@ const experience: Experience[] = [
   },
 ];
 
+const cardSx = {
+  p: 3,
+  bgcolor: 'background.paper',
+  borderColor: 'rgba(255,255,255,0.07)',
+  borderRadius: 3,
+} as const;
+
 export const About: React.FC = () => {
   return (
     <Box sx={{ pt: { xs: 2, sm: 5 }, pb: 4 }}>
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         <Paper
-          elevation={10}
+          variant="outlined"
           sx={{
             p: { xs: 3, sm: 4 },
-            background: 'linear-gradient(135deg, rgba(24,38,44,0.95) 0%, rgba(30,45,55,0.95) 100%)',
-            borderRadius: 6,
-            border: '1px solid rgba(0,234,255,0.1)',
+            bgcolor: 'background.paper',
+            borderRadius: 4,
+            borderColor: 'rgba(122,162,247,0.18)',
             mb: 3,
           }}
         >
@@ -134,22 +135,30 @@ export const About: React.FC = () => {
           >
             <Avatar
               src="/profile.jpeg"
-              srcSet="/profile.jpeg 2x"
               alt="Manish Neupane"
               sx={{
-                width: { xs: 100, sm: 120 },
-                height: { xs: 100, sm: 120 },
-                border: '3px solid',
+                width: { xs: 96, sm: 112 },
+                height: { xs: 96, sm: 112 },
+                border: '2px solid',
                 borderColor: 'primary.main',
-                boxShadow: '0 0 30px rgba(0,234,255,0.2)',
               }}
             />
             <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
-              <Typography variant="h3" sx={{ fontWeight: 800, color: 'primary.main', mb: 0.5 }}>
+              <Typography variant="h4" sx={{ fontWeight: 800, mb: 0.5 }}>
                 Manish Neupane
               </Typography>
-              <Typography variant="h6" sx={{ color: '#a8c5ca', fontWeight: 400, mb: 2 }}>
-                Software Engineer · Full-Stack &amp; Backend · Physics &amp; CS, SDSU
+              <Typography variant="subtitle1" sx={{ color: 'primary.main', fontWeight: 600, mb: 1.5 }}>
+                Software Engineer · Full-Stack &amp; Backend
+              </Typography>
+              <Typography variant="body1" sx={{ color: 'text.secondary', lineHeight: 1.7, mb: 2 }}>
+                I&apos;m a Physics &amp; Computer Science student at SDSU (graduating May 2026) who
+                spends most of his time building things — backends, full-stack apps, and scripts
+                that take tedious work off people&apos;s plates. I got into software through a
+                research lab, where I automated a data pipeline that turned a two-day analysis into
+                a four-hour one, and I&apos;ve been chasing that &quot;make it faster and more
+                reliable&quot; feeling ever since, from autonomous delivery robots at Starship to
+                product testing at Daktronics. I like clean code, small iterations, and problems
+                that sit between software and the real world.
               </Typography>
               <Stack
                 direction="row"
@@ -162,13 +171,13 @@ export const About: React.FC = () => {
                   icon={<SchoolIcon />}
                   label="B.S. Physics & CS · SDSU '26"
                   size="small"
-                  sx={{ bgcolor: 'rgba(0,234,255,0.1)', color: 'primary.main' }}
+                  sx={{ bgcolor: 'rgba(122,162,247,0.1)', color: 'primary.main' }}
                 />
                 <Chip
                   icon={<WorkIcon />}
-                  label="Open to SWE Roles"
+                  label="Open to SWE roles"
                   size="small"
-                  color="secondary"
+                  sx={{ bgcolor: 'rgba(187,154,247,0.1)', color: 'secondary.main' }}
                 />
               </Stack>
             </Box>
@@ -179,19 +188,11 @@ export const About: React.FC = () => {
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 3 }}>
         <Box>
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
           >
-            <Paper
-              elevation={6}
-              sx={{
-                p: 3,
-                background: 'rgba(24,38,44,0.85)',
-                borderRadius: 4,
-                height: '100%',
-              }}
-            >
+            <Paper variant="outlined" sx={{ ...cardSx, height: '100%' }}>
               <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 3 }}>
                 <WorkIcon color="primary" />
                 <Typography variant="h5" sx={{ fontWeight: 700 }}>
@@ -211,10 +212,7 @@ export const About: React.FC = () => {
                     }}
                   >
                     <Box>
-                      <Typography
-                        variant="h6"
-                        sx={{ fontWeight: 700, color: '#eaf8fa', fontSize: '1rem' }}
-                      >
+                      <Typography variant="h6" sx={{ fontWeight: 700, fontSize: '1rem' }}>
                         {exp.role}
                       </Typography>
                       <Typography variant="body2" sx={{ color: 'primary.main', fontWeight: 600 }}>
@@ -226,13 +224,13 @@ export const About: React.FC = () => {
                       size="small"
                       sx={{
                         bgcolor: 'rgba(255,255,255,0.05)',
-                        color: '#8ca0a3',
+                        color: 'text.secondary',
                         fontFamily: "'Source Code Pro', monospace",
                         fontSize: '0.7rem',
                       }}
                     />
                   </Box>
-                  <Box component="ul" sx={{ m: 0, mt: 1, pl: 2.5, color: '#b8cfd3' }}>
+                  <Box component="ul" sx={{ m: 0, mt: 1, pl: 2.5, color: 'text.secondary' }}>
                     {exp.highlights.map((h, i) => (
                       <Typography component="li" variant="body2" key={i} sx={{ mb: 0.5, lineHeight: 1.5 }}>
                         {h}
@@ -251,21 +249,18 @@ export const About: React.FC = () => {
         <Box>
           <Stack spacing={3}>
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
             >
-              <Paper
-                elevation={6}
-                sx={{ p: 3, background: 'rgba(24,38,44,0.85)', borderRadius: 4 }}
-              >
+              <Paper variant="outlined" sx={cardSx}>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
                   <SchoolIcon color="primary" />
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     Education
                   </Typography>
                 </Stack>
-                <Typography variant="body1" sx={{ fontWeight: 600, color: '#eaf8fa' }}>
+                <Typography variant="body1" sx={{ fontWeight: 600 }}>
                   B.S. in Physics & Computer Science
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'primary.main' }}>
@@ -274,7 +269,7 @@ export const About: React.FC = () => {
                 <Typography
                   variant="caption"
                   sx={{
-                    color: '#8ca0a3',
+                    color: 'text.secondary',
                     fontFamily: "'Source Code Pro', monospace",
                     display: 'block',
                     mb: 1.5,
@@ -282,10 +277,10 @@ export const About: React.FC = () => {
                 >
                   Aug 2021 – May 2026
                 </Typography>
-                <Typography variant="overline" sx={{ color: '#6b8a8f', fontSize: '0.65rem' }}>
+                <Typography variant="overline" sx={{ color: 'text.secondary', fontSize: '0.65rem' }}>
                   Relevant Coursework
                 </Typography>
-                <Typography variant="body2" sx={{ color: '#b8cfd3', lineHeight: 1.6 }}>
+                <Typography variant="body2" sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
                   Data Structures & Algorithms · Operating Systems · Machine Learning ·
                   Computational Physics · Software Engineering · Database Systems
                 </Typography>
@@ -293,14 +288,11 @@ export const About: React.FC = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25 }}
             >
-              <Paper
-                elevation={6}
-                sx={{ p: 3, background: 'rgba(24,38,44,0.85)', borderRadius: 4 }}
-              >
+              <Paper variant="outlined" sx={cardSx}>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
                   <CodeIcon color="primary" />
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>
@@ -309,7 +301,7 @@ export const About: React.FC = () => {
                 </Stack>
                 {skillCategories.map((cat) => (
                   <Box key={cat.title} sx={{ mb: 2 }}>
-                    <Typography variant="overline" sx={{ color: '#6b8a8f', fontSize: '0.65rem' }}>
+                    <Typography variant="overline" sx={{ color: 'text.secondary', fontSize: '0.65rem' }}>
                       {cat.title}
                     </Typography>
                     <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
@@ -321,16 +313,9 @@ export const About: React.FC = () => {
                           sx={{
                             fontSize: '0.7rem',
                             height: 24,
-                            bgcolor:
-                              cat.color === 'primary'
-                                ? 'rgba(0,234,255,0.1)'
-                                : 'rgba(255,121,198,0.1)',
-                            color: cat.color === 'primary' ? 'primary.main' : 'secondary.main',
-                            border: '1px solid',
-                            borderColor:
-                              cat.color === 'primary'
-                                ? 'rgba(0,234,255,0.2)'
-                                : 'rgba(255,121,198,0.2)',
+                            bgcolor: 'rgba(122,162,247,0.08)',
+                            color: 'text.primary',
+                            border: '1px solid rgba(122,162,247,0.18)',
                           }}
                         />
                       ))}
@@ -341,53 +326,44 @@ export const About: React.FC = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
             >
-              <Paper
-                elevation={6}
-                sx={{ p: 3, background: 'rgba(24,38,44,0.85)', borderRadius: 4 }}
-              >
+              <Paper variant="outlined" sx={cardSx}>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
                   <EmojiEventsIcon color="secondary" />
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     Recognition
                   </Typography>
                 </Stack>
-                <Box component="ul" sx={{ m: 0, pl: 2, color: '#b8cfd3' }}>
+                <Box component="ul" sx={{ m: 0, pl: 2, color: 'text.secondary' }}>
                   <Typography component="li" variant="body2" sx={{ mb: 1 }}>
-                    <strong style={{ color: '#00eaff' }}>URSCAD Outstanding Student Achievement in
-                    Research</strong> (Spring 2022, Spring 2024)
+                    URSCAD Outstanding Student Achievement in Research (Spring 2022, Spring 2024)
                   </Typography>
                   <Typography component="li" variant="body2" sx={{ mb: 1 }}>
-                    <strong style={{ color: '#ff79c6' }}>APS March Meeting</strong> Presenter (2023,
-                    2024)
+                    APS March Meeting Presenter (2023, 2024)
                   </Typography>
                   <Typography component="li" variant="body2">
-                    <strong style={{ color: '#00eaff' }}>Outstanding First Year Residential
-                    Assistant</strong>
+                    Outstanding First Year Residential Assistant
                   </Typography>
                 </Box>
               </Paper>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
             >
-              <Paper
-                elevation={6}
-                sx={{ p: 3, background: 'rgba(24,38,44,0.85)', borderRadius: 4 }}
-              >
+              <Paper variant="outlined" sx={cardSx}>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
                   <ArticleIcon color="primary" />
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>
                     Publications
                   </Typography>
                 </Stack>
-                <Box component="ul" sx={{ m: 0, pl: 2, color: '#b8cfd3' }}>
+                <Box component="ul" sx={{ m: 0, pl: 2, color: 'text.secondary' }}>
                   <Typography component="li" variant="body2" sx={{ mb: 1, lineHeight: 1.5 }}>
                     Enhancing Soft Magnetic Properties of Fe<sub>72</sub>Nb<sub>4</sub>Cu<sub>1</sub>
                     Si<sub>16-x</sub>Ge<sub>x</sub>B<sub>7</sub> by Increasing Ge Concentration.
@@ -407,44 +383,38 @@ export const About: React.FC = () => {
       </Box>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 0.4 }}
       >
         <Paper
-          elevation={0}
+          variant="outlined"
           sx={{
             mt: 3,
             p: 3,
-            borderRadius: 4,
-            background: 'linear-gradient(135deg, rgba(255,121,198,0.1) 0%, rgba(0,234,255,0.1) 100%)',
-            border: '1px solid rgba(255,121,198,0.15)',
+            borderRadius: 3,
+            bgcolor: 'background.paper',
+            borderColor: 'rgba(255,255,255,0.07)',
             textAlign: 'center',
           }}
         >
-          <Typography variant="body1" sx={{ color: '#cddede', mb: 1 }}>
+          <Typography variant="body1" sx={{ color: 'text.secondary', mb: 1.5 }}>
             Open to Software Engineer, Full-Stack, and Backend roles. Happy to talk through projects
             or opportunities.
           </Typography>
-          <Stack
-            direction="row"
-            spacing={2}
-            justifyContent="center"
-            flexWrap="wrap"
-            useFlexGap
-          >
+          <Stack direction="row" spacing={3} justifyContent="center" flexWrap="wrap" useFlexGap>
             <MuiLink
               href="mailto:manishneupane0909@gmail.com"
               underline="hover"
               sx={{ color: 'primary.main', fontWeight: 600 }}
             >
-              manishneupane0909@gmail.com
+              Email
             </MuiLink>
             <MuiLink
               href="https://www.linkedin.com/in/manish-neupane-380a65189"
               target="_blank"
               underline="hover"
-              sx={{ color: 'secondary.main', fontWeight: 600 }}
+              sx={{ color: 'primary.main', fontWeight: 600 }}
             >
               LinkedIn
             </MuiLink>
@@ -462,4 +432,3 @@ export const About: React.FC = () => {
     </Box>
   );
 };
-

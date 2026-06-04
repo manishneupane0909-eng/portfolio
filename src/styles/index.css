@@ -16,7 +16,7 @@ body {
 }
 
 :focus-visible {
-  outline: 2px dashed var(--color-primary, #00eaff);
+  outline: 2px dashed var(--color-primary, #7aa2f7);
   outline-offset: 2px;
 }
 
@@ -25,7 +25,7 @@ html {
 }
 
 ::selection {
-  background: rgba(0, 234, 255, 0.3);
+  background: rgba(122, 162, 247, 0.3);
   color: #fff;
 }
 
@@ -40,29 +40,29 @@ a {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--color-primary, #00eaff);
+  outline: 2px solid var(--color-primary, #7aa2f7);
   outline-offset: 2px;
 }
 
 [data-theme='dark'] {
-  --color-bg: #23242a;
-  --color-surface: rgba(24, 38, 44, 0.9);
-  --color-text: #eaf8fa;
-  --color-text-secondary: #8ca0a3;
-  --color-primary: #00eaff;
-  --color-secondary: #ff79c6;
-  --scrollbar-thumb: rgba(0, 234, 255, 0.3);
+  --color-bg: #1a1b26;
+  --color-surface: rgba(36, 40, 59, 0.9);
+  --color-text: #c0caf5;
+  --color-text-secondary: #787c99;
+  --color-primary: #7aa2f7;
+  --color-secondary: #bb9af7;
+  --scrollbar-thumb: rgba(122, 162, 247, 0.3);
   --scrollbar-track: rgba(255, 255, 255, 0.05);
 }
 
 [data-theme='light'] {
-  --color-bg: #ffffff;
+  --color-bg: #f7f8fc;
   --color-surface: rgba(255, 255, 255, 0.95);
-  --color-text: #1a1a2e;
-  --color-text-secondary: #6b7c85;
-  --color-primary: #0066cc;
-  --color-secondary: #cc0066;
-  --scrollbar-thumb: rgba(0, 102, 204, 0.3);
+  --color-text: #1a1b26;
+  --color-text-secondary: #6b7280;
+  --color-primary: #3b5bdb;
+  --color-secondary: #7048e8;
+  --scrollbar-thumb: rgba(59, 91, 219, 0.3);
   --scrollbar-track: rgba(0, 0, 0, 0.05);
 }
 
@@ -124,6 +124,10 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.codestyle {
+  font-family: 'Source Code Pro', monospace;
 }
 
 

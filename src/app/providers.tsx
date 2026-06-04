@@ -13,15 +13,15 @@ export const Providers: React.FC<ProvidersProps> = ({ mode, children }) => {
       createTheme({
         palette: {
           mode,
-          primary: { main: mode === 'dark' ? '#00eaff' : '#0066cc' },
-          secondary: { main: mode === 'dark' ? '#ff79c6' : '#cc0066' },
+          primary: { main: mode === 'dark' ? '#7aa2f7' : '#3b5bdb' },
+          secondary: { main: mode === 'dark' ? '#bb9af7' : '#7048e8' },
           background: {
-            default: mode === 'dark' ? '#23242a' : '#ffffff',
-            paper: mode === 'dark' ? 'rgba(24,38,44,0.9)' : 'rgba(255,255,255,0.95)',
+            default: mode === 'dark' ? '#1a1b26' : '#f7f8fc',
+            paper: mode === 'dark' ? 'rgba(36,40,59,0.9)' : 'rgba(255,255,255,0.95)',
           },
           text: {
-            primary: mode === 'dark' ? '#eaf8fa' : '#1a1a2e',
-            secondary: mode === 'dark' ? '#8ca0a3' : '#6b7c85',
+            primary: mode === 'dark' ? '#c0caf5' : '#1a1b26',
+            secondary: mode === 'dark' ? '#787c99' : '#6b7280',
           },
         },
         typography: {
@@ -32,15 +32,20 @@ export const Providers: React.FC<ProvidersProps> = ({ mode, children }) => {
           h4: { fontFamily: "'Outfit', sans-serif", fontWeight: 700 },
           h5: { fontFamily: "'Outfit', sans-serif", fontWeight: 700 },
           h6: { fontFamily: "'Outfit', sans-serif", fontWeight: 600 },
-          overline: { fontFamily: "'Source Code Pro', monospace", letterSpacing: '0.1em' },
-          caption: { fontFamily: "'Source Code Pro', monospace" },
+          overline: { fontFamily: "'Source Code Pro', monospace", letterSpacing: '0.08em' },
         },
+        shape: { borderRadius: 12 },
         components: {
           MuiCssBaseline: {
             styleOverrides: {
               body: {
-                backgroundColor: mode === 'dark' ? '#23242a' : '#ffffff',
+                backgroundColor: mode === 'dark' ? '#1a1b26' : '#f7f8fc',
               },
+            },
+          },
+          MuiButton: {
+            styleOverrides: {
+              root: { textTransform: 'none', borderRadius: 8 },
             },
           },
         },

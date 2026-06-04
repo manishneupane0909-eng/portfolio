@@ -110,7 +110,9 @@ export const Navbar: React.FC<NavbarProps> = ({ mode, onToggleMode }) => {
         elevation={0}
         sx={{
           backdropFilter: 'blur(6px)',
-          background: mode === 'dark' ? 'rgba(20,22,26,0.7)' : 'rgba(255,255,255,0.9)',
+          background: mode === 'dark' ? 'rgba(26,27,38,0.8)' : 'rgba(255,255,255,0.85)',
+          borderBottom: '1px solid',
+          borderColor: mode === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
           width: '100%',
         }}
       >

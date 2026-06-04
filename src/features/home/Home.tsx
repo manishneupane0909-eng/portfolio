@@ -9,356 +9,294 @@ import {
   Avatar,
   Card,
   CardContent,
+  Link as MuiLink,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
-import WorkIcon from '@mui/icons-material/Work';
-import SchoolIcon from '@mui/icons-material/School';
-import { projectsList } from './data/projects';
+import { projectsList } from '@/features/projects/data/projects';
 import { achievements } from './data/achievements';
 import { LogoRow } from '@/shared/components/LogoRow';
 
 const featuredProjects = projectsList.filter((p) => p.featured);
 
+const EMAIL = 'manishneupane0909@gmail.com';
+
 export const Home: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, pt: { xs: 2, sm: 4 } }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 5, pt: { xs: 2, sm: 4 } }}>
       <motion.div
-        initial={{ opacity: 0, y: -40 }}
+        initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
+        transition={{ duration: 0.5 }}
       >
         <Paper
-          elevation={12}
+          variant="outlined"
           sx={{
-            p: { xs: 3, sm: 5 },
-            background: 'linear-gradient(135deg, rgba(24,38,44,0.95) 0%, rgba(20,30,38,0.98) 100%)',
-            borderRadius: 6,
-            boxShadow: '0 12px 40px #00eaff33',
-            color: '#eaf8fa',
-            border: '1px solid rgba(0,234,255,0.1)',
+            p: { xs: 3, sm: 4 },
+            borderRadius: 4,
+            bgcolor: 'background.paper',
+            borderColor: 'rgba(122,162,247,0.18)',
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={1}
+            sx={{ mb: 3, color: 'text.secondary' }}
           >
-            <Chip
-              icon={<RocketLaunchIcon sx={{ fontSize: 16 }} />}
-              label="OPEN TO SOFTWARE ENGINEER · FULL-STACK · BACKEND ROLES"
-              color="secondary"
+            <Box
               sx={{
-                mb: 3,
-                fontFamily: "'Source Code Pro', monospace",
-                fontWeight: 500,
-                fontSize: '0.75rem',
-                letterSpacing: '0.05em',
-                py: 2.5,
-                '& .MuiChip-icon': { color: 'inherit' },
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                bgcolor: '#9ece6a',
+                boxShadow: '0 0 8px #9ece6a',
               }}
             />
-          </motion.div>
+            <Typography
+              variant="body2"
+              sx={{ fontFamily: "'Source Code Pro', monospace", fontSize: '0.8rem' }}
+            >
+              open to Software Engineer · Full-Stack · Backend roles
+            </Typography>
+          </Stack>
 
           <Stack
-            direction={{ xs: 'column', md: 'row' }}
-            spacing={4}
-            alignItems={{ xs: 'center', md: 'center' }}
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={{ xs: 2.5, sm: 4 }}
+            alignItems={{ xs: 'center', sm: 'center' }}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2, type: 'spring' }}
-            >
-              <Avatar
-                src="/profile.jpeg"
-                srcSet="/profile.jpeg 1x, /profile.jpeg 2x"
-                alt="Manish Neupane"
-                sx={{
-                  width: { xs: 100, sm: 120 },
-                  height: { xs: 100, sm: 120 },
-                  border: '3px solid',
-                  borderColor: 'primary.main',
-                  boxShadow: '0 0 30px rgba(0,234,255,0.3)',
-                }}
-              />
-            </motion.div>
-            <Box sx={{ flex: 1, textAlign: { xs: 'center', md: 'left' } }}>
+            <Avatar
+              src="/profile.jpeg"
+              alt="Manish Neupane"
+              sx={{
+                width: { xs: 96, sm: 104 },
+                height: { xs: 96, sm: 104 },
+                border: '2px solid',
+                borderColor: 'primary.main',
+              }}
+            />
+            <Box sx={{ flex: 1, textAlign: { xs: 'center', sm: 'left' } }}>
               <Typography
-                variant="h2"
+                variant="h3"
                 sx={{
                   fontWeight: 800,
                   lineHeight: 1.1,
-                  fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-                  color: '#eaf8fa',
+                  fontSize: { xs: '1.9rem', sm: '2.4rem' },
                 }}
               >
                 Manish Neupane
               </Typography>
               <Typography
-                variant="h5"
-                sx={{ mt: 1, fontWeight: 700, lineHeight: 1.3 }}
+                variant="h6"
+                sx={{ mt: 0.5, fontWeight: 600, color: 'primary.main' }}
               >
-                <Box component="span" sx={{ color: 'primary.main' }}>
-                  Software Engineer
-                </Box>
-                <Box component="span" sx={{ color: '#8892a0', mx: 1 }}>
-                  |
-                </Box>
-                <Box component="span" sx={{ color: 'secondary.main' }}>
-                  Full-Stack &amp; Backend
-                </Box>
+                Software Engineer · Full-Stack &amp; Backend
               </Typography>
               <Typography
                 variant="body1"
-                sx={{ mt: 1.5, fontWeight: 400, color: '#a8c5ca', lineHeight: 1.6 }}
+                sx={{ mt: 1.5, color: 'text.secondary', lineHeight: 1.6, maxWidth: 560 }}
               >
                 I build reliable software systems, full-stack applications, and automation tools
                 across web, robotics, and scientific workflows.
               </Typography>
-              <Stack
-                direction="row"
-                spacing={1}
-                sx={{ mt: 2, flexWrap: 'wrap', gap: 1, justifyContent: { xs: 'center', md: 'flex-start' } }}
-              >
-                <Chip
-                  icon={<SchoolIcon />}
-                  label="B.S. Physics & CS · SDSU '26"
-                  size="small"
-                  variant="outlined"
-                  sx={{ borderColor: 'rgba(255,255,255,0.2)', color: '#cddede' }}
-                />
-                <Chip
-                  icon={<WorkIcon />}
-                  label="Daktronics · Starship · SDSU Research"
-                  size="small"
-                  variant="outlined"
-                  sx={{ borderColor: 'rgba(255,255,255,0.2)', color: '#cddede' }}
-                />
-              </Stack>
-
-              <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={2}
-                mt={3}
-                sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
-              >
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={() => navigate('/projects')}
-                  size="large"
-                  sx={{ fontWeight: 700, px: 4, boxShadow: '0 4px 20px rgba(0,234,255,0.4)' }}
-                >
-                  View Projects
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  href="/Resume.pdf"
-                  download
-                  size="large"
-                  sx={{ fontWeight: 600, px: 4 }}
-                >
-                  Download Resume
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="secondary"
-                  href="mailto:manishneupane0909@gmail.com"
-                  size="large"
-                  sx={{ fontWeight: 600, px: 4 }}
-                >
-                  Contact Me
-                </Button>
-              </Stack>
             </Box>
           </Stack>
 
-          <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-            <Typography
-              variant="overline"
+          <Stack
+            direction={{ xs: 'column', sm: 'row' }}
+            spacing={2}
+            alignItems={{ xs: 'stretch', sm: 'center' }}
+            sx={{ mt: 3.5 }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate('/projects')}
+              sx={{ fontWeight: 700, px: 3.5 }}
+            >
+              View Projects
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              href="/Resume.pdf"
+              download
+              sx={{ fontWeight: 600, px: 3.5 }}
+            >
+              Download Resume
+            </Button>
+            <MuiLink
+              href={`mailto:${EMAIL}`}
+              underline="hover"
               sx={{
-                color: '#6b7c85',
-                mb: 2,
-                display: 'block',
-                textAlign: { xs: 'center', sm: 'left' },
+                color: 'text.secondary',
+                fontSize: '0.9rem',
+                alignSelf: 'center',
+                fontWeight: 500,
               }}
             >
-              Quantified Impact
-            </Typography>
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' }, gap: 2 }}>
-              {achievements.map((a, i) => (
-                <Box key={a.label}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                  >
-                    <Box
-                      sx={{
-                        textAlign: 'center',
-                        p: 2,
-                        borderRadius: 3,
-                        background: 'rgba(0,234,255,0.05)',
-                        border: '1px solid rgba(0,234,255,0.1)',
-                        transition: 'all 0.3s',
-                        '&:hover': {
-                          background: 'rgba(0,234,255,0.1)',
-                          transform: 'translateY(-2px)',
-                        },
-                      }}
-                    >
-                      <Typography
-                        variant="h3"
-                        sx={{
-                          fontWeight: 800,
-                          color: 'primary.main',
-                          fontFamily: "'Source Code Pro', monospace",
-                        }}
-                      >
-                        {a.metric}
-                      </Typography>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: '#eaf8fa' }}>
-                        {a.label}
-                      </Typography>
-                      <Typography variant="caption" sx={{ color: '#6b8a8f' }}>
-                        {a.context}
-                      </Typography>
-                    </Box>
-                  </motion.div>
-                </Box>
-              ))}
-            </Box>
-          </Box>
+              or email me →
+            </MuiLink>
+          </Stack>
         </Paper>
       </motion.div>
 
-      <LogoRow />
-
-      <section>
-        <Typography variant="h5" sx={{ fontWeight: 800, mb: 2, color: 'primary.main' }}>
-          Featured work
+      <Box>
+        <Typography
+          variant="overline"
+          sx={{ color: 'text.secondary', display: 'block', mb: 1.5, letterSpacing: '0.12em' }}
+        >
+          A few numbers
         </Typography>
-        <Typography variant="body2" sx={{ mb: 3, color: '#cfe8ea' }}>
-          Full-stack, backend, and applied-ML projects with concise impact summaries. Full list on
-          the Projects page.
-        </Typography>
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 3 }}>
-          {featuredProjects.map((p, i) => (
-            <Box key={p.name}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(3, 1fr)' }, gap: 2 }}>
+          {achievements.map((a) => (
+            <Paper
+              key={a.label}
+              variant="outlined"
+              sx={{
+                p: 2.5,
+                borderRadius: 3,
+                bgcolor: 'background.paper',
+                borderColor: 'rgba(255,255,255,0.07)',
+              }}
+            >
+              <Typography
+                variant="h4"
+                sx={{ fontWeight: 800, color: 'primary.main', fontFamily: "'Source Code Pro', monospace" }}
               >
-                <Card
-                  elevation={6}
-                  sx={{
-                    height: 'auto',
-                    background: 'rgba(24,38,44,0.85)',
-                    borderRadius: 4,
-                    transition: 'all 0.3s',
-                    '&:hover': { boxShadow: '0 4px 12px #00eaff55' },
-                  }}
-                >
-                  <CardContent sx={{ p: 3 }}>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
-                      {p.name}
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: '#cddede', mt: 1, mb: 2 }}>
-                      {p.description}
-                    </Typography>
-                    <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap" mb={2}>
-                      {p.tags.map((t) => (
-                        <Chip key={t} label={t} size="small" color="primary" />
-                      ))}
-                    </Stack>
-                    <Box component="ul" sx={{ m: 0, pl: 2.25, color: '#a8d4da' }}>
-                      {p.bullets.map((b) => (
-                        <Typography
-                          component="li"
-                          variant="caption"
-                          key={b}
-                          sx={{ display: 'list-item', mb: 0.5, lineHeight: 1.5 }}
-                        >
-                          {b}
-                        </Typography>
-                      ))}
-                    </Box>
-                    <Stack direction="row" spacing={2} mt={2}>
-                      {p.github && (
-                        <Button
-                          variant="outlined"
-                          size="small"
-                          href={p.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          GitHub
-                        </Button>
-                      )}
-                      {p.demo && (
-                        <Button
-                          variant="outlined"
-                          size="small"
-                          href={p.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Live Demo
-                        </Button>
-                      )}
-                    </Stack>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </Box>
+                {a.metric}
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: 600, mt: 0.5 }}>
+                {a.label}
+              </Typography>
+              <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                {a.context}
+              </Typography>
+            </Paper>
           ))}
         </Box>
-      </section>
+      </Box>
+
+      <LogoRow />
+
+      <Box component="section">
+        <Stack
+          direction="row"
+          alignItems="baseline"
+          justifyContent="space-between"
+          flexWrap="wrap"
+          sx={{ mb: 2.5 }}
+        >
+          <Typography variant="h5" sx={{ fontWeight: 800 }}>
+            Featured work
+          </Typography>
+          <MuiLink
+            component="button"
+            onClick={() => navigate('/projects')}
+            underline="hover"
+            sx={{ color: 'primary.main', fontSize: '0.9rem', fontWeight: 600 }}
+          >
+            All projects →
+          </MuiLink>
+        </Stack>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, 1fr)' }, gap: 3 }}>
+          {featuredProjects.map((p, i) => (
+            <motion.div
+              key={p.name}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+            >
+              <Card
+                variant="outlined"
+                sx={{
+                  height: '100%',
+                  bgcolor: 'background.paper',
+                  borderColor: 'rgba(255,255,255,0.07)',
+                  borderRadius: 3,
+                  transition: 'border-color 0.2s ease',
+                  '&:hover': { borderColor: 'primary.main' },
+                }}
+              >
+                <CardContent sx={{ p: 2.5 }}>
+                  <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                    {p.name}
+                  </Typography>
+                  <Typography variant="body2" sx={{ color: 'text.secondary', mt: 1, mb: 2, lineHeight: 1.6 }}>
+                    {p.description}
+                  </Typography>
+                  <Stack direction="row" spacing={0.75} useFlexGap flexWrap="wrap">
+                    {p.tags.slice(0, 4).map((t) => (
+                      <Chip
+                        key={t}
+                        label={t}
+                        size="small"
+                        sx={{
+                          fontSize: '0.7rem',
+                          height: 22,
+                          bgcolor: 'rgba(122,162,247,0.1)',
+                          color: 'primary.main',
+                        }}
+                      />
+                    ))}
+                  </Stack>
+                  {p.github && (
+                    <Button
+                      size="small"
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      sx={{ mt: 2, px: 0, color: 'text.secondary', fontWeight: 600 }}
+                    >
+                      View code →
+                    </Button>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </Box>
+      </Box>
 
       <Paper
-        elevation={0}
+        variant="outlined"
         sx={{
-          p: 4,
+          p: { xs: 3, sm: 3.5 },
           borderRadius: 4,
-          background: 'linear-gradient(135deg, rgba(255,121,198,0.08) 0%, rgba(0,234,255,0.08) 100%)',
-          border: '1px solid rgba(255,121,198,0.15)',
+          bgcolor: 'background.paper',
+          borderColor: 'rgba(255,255,255,0.07)',
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>
-          Ideal Next Role
+        <Typography variant="h6" sx={{ fontWeight: 800, mb: 1 }}>
+          What I&apos;m looking for
         </Typography>
-        <Typography variant="body1" sx={{ color: '#cfe8ea', mb: 3, lineHeight: 1.7 }}>
-          Looking for <strong>Software Engineer, Full-Stack, or Backend</strong> roles where I can
-          build reliable services, full-stack applications, and automation. I value{' '}
-          <strong>code quality, testing, and shipping iteratively</strong>, and bring a strong
-          systems mindset from robotics and research.
+        <Typography variant="body1" sx={{ color: 'text.secondary', mb: 2.5, lineHeight: 1.7 }}>
+          Software Engineer, Full-Stack, or Backend roles where I can build reliable services,
+          full-stack apps, and automation. I care about clean code, testing, and shipping
+          iteratively, and I like problems that touch both software and hardware.
         </Typography>
-
-        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, gap: 2, mb: 3 }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: { xs: 2, sm: 4 } }}>
           {[
             {
-              title: 'Great Fit',
+              title: 'Areas I enjoy',
               items: [
-                'Full-Stack Web Applications',
-                'Backend & API Development',
-                'Automation & Data Pipelines',
-                'Applied ML / Scientific Computing',
+                'Full-stack web applications',
+                'Backend & API development',
+                'Automation & data pipelines',
+                'Applied ML / scientific computing',
               ],
             },
             {
-              title: 'I Bring',
+              title: 'Tools I reach for',
               items: [
-                'Python, JavaScript / TypeScript, React',
-                'FastAPI & Django REST APIs',
-                'Production robotics & research experience',
-                'Physics + CS dual perspective',
+                'Python, TypeScript, JavaScript',
+                'React, FastAPI, Django REST',
+                'PostgreSQL, MongoDB, Redis',
+                'Docker, AWS, Git',
               ],
             },
           ].map((col) => (
@@ -366,9 +304,9 @@ export const Home: React.FC = () => {
               <Typography variant="overline" sx={{ color: 'secondary.main', fontWeight: 700 }}>
                 {col.title}
               </Typography>
-              <Box component="ul" sx={{ m: 0, mt: 1, pl: 2 }}>
+              <Box component="ul" sx={{ m: 0, mt: 0.5, pl: 2.25 }}>
                 {col.items.map((item) => (
-                  <Typography component="li" variant="body2" key={item} sx={{ color: '#b8d4d8', mb: 0.5 }}>
+                  <Typography component="li" variant="body2" key={item} sx={{ color: 'text.secondary', mb: 0.5 }}>
                     {item}
                   </Typography>
                 ))}
@@ -376,43 +314,16 @@ export const Home: React.FC = () => {
             </Box>
           ))}
         </Box>
-
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-          <Button
-            variant="contained"
-            color="secondary"
-            href="mailto:manishneupane0909@gmail.com"
-            size="large"
-            sx={{ fontWeight: 700, px: 4 }}
-          >
-            Invite Me to Interview
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => navigate('/projects')}
-            size="large"
-            sx={{ fontWeight: 600, px: 4 }}
-          >
-            See All Projects
-          </Button>
-        </Stack>
       </Paper>
 
-      <Box sx={{ textAlign: 'center' }}>
-        <Typography variant="body2" sx={{ opacity: 0.8 }}>
-          Like what you see? I reply fast on email.
+      <Box sx={{ textAlign: 'center', pb: 2 }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+          Want to talk? I usually reply within a day.
         </Typography>
-        <Button
-          sx={{ mt: 1 }}
-          variant="text"
-          color="primary"
-          href="mailto:manishneupane0909@gmail.com"
-        >
-          manishneupane0909@gmail.com
+        <Button sx={{ mt: 0.5 }} variant="text" color="primary" href={`mailto:${EMAIL}`}>
+          {EMAIL}
         </Button>
       </Box>
     </Box>
   );
 };
-
