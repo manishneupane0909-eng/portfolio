@@ -119,9 +119,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, idx, isFeatured = fa
           >
             IMPACT
           </Typography>
-          <Typography variant="body2" sx={{ color: '#a8d4da', fontSize: '0.8rem', lineHeight: 1.5 }}>
-            {project.highlights}
-          </Typography>
+          <Box component="ul" sx={{ m: 0, pl: 2.25, color: '#a8d4da' }}>
+            {project.bullets.map((bullet) => (
+              <Typography
+                component="li"
+                variant="body2"
+                key={bullet}
+                sx={{ fontSize: '0.8rem', lineHeight: 1.5, mb: 0.5 }}
+              >
+                {bullet}
+              </Typography>
+            ))}
+          </Box>
         </Box>
       </CardContent>
 
@@ -173,8 +182,8 @@ export const Projects: React.FC = () => {
           Projects
         </Typography>
         <Typography variant="body1" sx={{ color: '#8ca0a3', maxWidth: 600 }}>
-          Production-ready code with real impact. All repos include commit history, tests, and
-          documentation. Click through to see the implementation details.
+          A selection of full-stack, backend, and applied-ML projects with concise impact summaries.
+          Click through to the source on GitHub for implementation details.
         </Typography>
       </Box>
 

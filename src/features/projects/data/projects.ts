@@ -2,40 +2,47 @@ import { Project } from '@/shared/types';
 
 export const projectsList: Project[] = [
   {
-    name: 'ElementX',
-    tags: ['React', 'FastAPI', 'Python', 'NumPy', 'MongoDB', 'JWT Auth'],
+    name: 'Secure Path Optimization Platform',
+    tags: ['Django REST Framework', 'React', 'PostgreSQL', 'scikit-learn', 'Celery', 'Redis', 'Plaid API'],
     description:
-      'Full-stack materials characterization platform for researchers. Features stoichiometry calculator, XRD peak detection with SciPy, and M-H loop analysis for magnetic properties (Ms, Hc extraction).',
-    highlights:
-      'Problem: Manual compound calculations are error-prone → Built automated tool → Used by lab colleagues for Heusler alloy synthesis',
+      'Full-stack fraud detection platform that ingests live bank data through the Plaid API and scores transaction risk with a scikit-learn classifier.',
+    bullets: [
+      'Built a Django REST Framework + PostgreSQL backend with bearer-token authenticated endpoints.',
+      'Ran ML inference asynchronously with Celery and Redis so scoring never blocks the UI.',
+      'Designed an interactive dashboard to visualize fraud signals and transaction insights.',
+    ],
+    github: 'https://github.com/manishneupane0909-eng/securepath',
+    demo: null,
+    image: null,
+    featured: true,
+  },
+  {
+    name: 'ElementX',
+    tags: ['React', 'FastAPI', 'Python', 'MongoDB', 'SciPy', 'Docker', 'JWT'],
+    description:
+      'Full-stack materials science research platform for stoichiometry calculations, automated XRD peak detection, and magnetic property extraction from M-H loop data.',
+    bullets: [
+      'Engineered an asynchronous FastAPI backend with MongoDB, JWT authentication, and Docker Compose deployment.',
+      'Automated XRD peak detection and M-H loop analysis to extract magnetic properties for lab workflows.',
+      'Connected scientific data processing with a modern React interface to support lab analysis and experimentation.',
+    ],
     github: 'https://github.com/manishneupane0909-eng/ElementX',
     demo: null,
     image: null,
     featured: true,
   },
   {
-    name: 'PINN PDE Solver',
-    tags: ['Python', 'PyTorch', 'CUDA', 'Scientific Computing'],
+    name: 'Physics-Informed Neural Networks (PINNs)',
+    tags: ['Python', 'PyTorch', 'NumPy'],
     description:
-      'Physics-Informed Neural Network that embeds physical laws directly into the loss function to solve diffusion-type PDEs. Benchmarked against FEM solvers for accuracy and speed.',
-    highlights:
-      'Problem: Classical solvers slow on irregular geometries → PINNs leverage GPU → 25% speedup on complex domains',
+      'Neural PDE solver that embeds physical constraints directly into the loss function to solve nonlinear diffusion equations.',
+    bullets: [
+      'Achieved a 25% speedup over classical finite-difference methods on nonlinear diffusion equations.',
+      'Reduced material simulation compute time by 40% with conservation-law-enforcing custom loss functions.',
+    ],
     github: 'https://github.com/manishneupane0909-eng/pinn-pde-solver',
     demo: null,
     image: null,
     featured: true,
   },
-  {
-    name: 'SecurePath',
-    tags: ['Django', 'React', 'Python', 'PostgreSQL', 'Machine Learning', 'Plaid API'],
-    description:
-      'Full-stack fraud detection system for financial transactions. Uses scikit-learn for ML-based risk scoring, integrates with Plaid for bank data, and provides real-time fraud monitoring dashboard.',
-    highlights:
-      'Problem: Manual fraud detection slow and error-prone → Built automated ML pipeline → Real-time risk scoring for transactions',
-    github: 'https://github.com/manishneupane0909-eng/securepath',
-    demo: null,
-    image: null,
-    featured: true,
-  },
 ];
-

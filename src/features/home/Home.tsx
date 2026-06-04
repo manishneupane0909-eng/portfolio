@@ -9,14 +9,9 @@ import {
   Avatar,
   Card,
   CardContent,
-  ListItemIcon,
-  Link as MuiLink,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import DescriptionIcon from '@mui/icons-material/Description';
-import BuildIcon from '@mui/icons-material/Build';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
@@ -54,7 +49,7 @@ export const Home: React.FC = () => {
           >
             <Chip
               icon={<RocketLaunchIcon sx={{ fontSize: 16 }} />}
-              label="ACTIVELY SEEKING R&D / ROBOTICS / SWE ROLES"
+              label="OPEN TO SOFTWARE ENGINEER · FULL-STACK · BACKEND ROLES"
               color="secondary"
               sx={{
                 mb: 3,
@@ -98,23 +93,31 @@ export const Home: React.FC = () => {
                   fontWeight: 800,
                   lineHeight: 1.1,
                   fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                  color: '#eaf8fa',
                 }}
               >
-                <Box component="span" sx={{ color: 'primary.main' }}>
-                  Physics
-                </Box>
-                <Box component="span" sx={{ color: '#8892a0', mx: 1 }}>
-                  ×
-                </Box>
-                <Box component="span" sx={{ color: 'secondary.main' }}>
-                  Code
-                </Box>
+                Manish Neupane
               </Typography>
               <Typography
                 variant="h5"
-                sx={{ mt: 1, fontWeight: 400, color: '#a8c5ca', lineHeight: 1.4 }}
+                sx={{ mt: 1, fontWeight: 700, lineHeight: 1.3 }}
               >
-                I turn lab data into production systems—from Heusler alloys to autonomous robots.
+                <Box component="span" sx={{ color: 'primary.main' }}>
+                  Software Engineer
+                </Box>
+                <Box component="span" sx={{ color: '#8892a0', mx: 1 }}>
+                  |
+                </Box>
+                <Box component="span" sx={{ color: 'secondary.main' }}>
+                  Full-Stack &amp; Backend
+                </Box>
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{ mt: 1.5, fontWeight: 400, color: '#a8c5ca', lineHeight: 1.6 }}
+              >
+                I build reliable software systems, full-stack applications, and automation tools
+                across web, robotics, and scientific workflows.
               </Typography>
               <Stack
                 direction="row"
@@ -123,14 +126,14 @@ export const Home: React.FC = () => {
               >
                 <Chip
                   icon={<SchoolIcon />}
-                  label="BS Physics + CS @ SDSU '26"
+                  label="B.S. Physics & CS · SDSU '26"
                   size="small"
                   variant="outlined"
                   sx={{ borderColor: 'rgba(255,255,255,0.2)', color: '#cddede' }}
                 />
                 <Chip
                   icon={<WorkIcon />}
-                  label="Starship • Daktronics • SDSU Lab"
+                  label="Daktronics · Starship · SDSU Research"
                   size="small"
                   variant="outlined"
                   sx={{ borderColor: 'rgba(255,255,255,0.2)', color: '#cddede' }}
@@ -146,10 +149,19 @@ export const Home: React.FC = () => {
                 <Button
                   variant="contained"
                   color="primary"
+                  onClick={() => navigate('/projects')}
+                  size="large"
+                  sx={{ fontWeight: 700, px: 4, boxShadow: '0 4px 20px rgba(0,234,255,0.4)' }}
+                >
+                  View Projects
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="primary"
                   href="/Resume.pdf"
                   download
                   size="large"
-                  sx={{ fontWeight: 700, px: 4, boxShadow: '0 4px 20px rgba(0,234,255,0.4)' }}
+                  sx={{ fontWeight: 600, px: 4 }}
                 >
                   Download Resume
                 </Button>
@@ -160,7 +172,7 @@ export const Home: React.FC = () => {
                   size="large"
                   sx={{ fontWeight: 600, px: 4 }}
                 >
-                  Let's Talk →
+                  Contact Me
                 </Button>
               </Stack>
             </Box>
@@ -232,7 +244,8 @@ export const Home: React.FC = () => {
           Featured work
         </Typography>
         <Typography variant="body2" sx={{ mb: 3, color: '#cfe8ea' }}>
-          Problem → Action → Result snapshots. Full list on the Projects page.
+          Full-stack, backend, and applied-ML projects with concise impact summaries. Full list on
+          the Projects page.
         </Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }, gap: 3 }}>
           {featuredProjects.map((p, i) => (
@@ -265,9 +278,18 @@ export const Home: React.FC = () => {
                         <Chip key={t} label={t} size="small" color="primary" />
                       ))}
                     </Stack>
-                    <Typography variant="caption" color="primary.light">
-                      {p.highlights}
-                    </Typography>
+                    <Box component="ul" sx={{ m: 0, pl: 2.25, color: '#a8d4da' }}>
+                      {p.bullets.map((b) => (
+                        <Typography
+                          component="li"
+                          variant="caption"
+                          key={b}
+                          sx={{ display: 'list-item', mb: 0.5, lineHeight: 1.5 }}
+                        >
+                          {b}
+                        </Typography>
+                      ))}
+                    </Box>
                     <Stack direction="row" spacing={2} mt={2}>
                       {p.github && (
                         <Button
@@ -301,87 +323,6 @@ export const Home: React.FC = () => {
       </section>
 
       <Paper
-        elevation={8}
-        sx={{
-          p: 3,
-          borderRadius: 4,
-          background: 'rgba(24,38,44,0.85)',
-          border: '1px solid rgba(0,234,255,0.08)',
-        }}
-      >
-        <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
-          <Box
-            sx={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              bgcolor: '#4ade80',
-              animation: 'pulse 2s infinite',
-            }}
-          />
-          <Typography variant="overline" sx={{ color: '#4ade80', letterSpacing: '0.1em' }}>
-            Currently Building
-          </Typography>
-        </Stack>
-        <Box component="ul" sx={{ m: 0, p: 0, listStyle: 'none' }}>
-          <Stack direction="row" alignItems="flex-start" spacing={2} sx={{ mb: 2 }}>
-            <ListItemIcon sx={{ minWidth: 'auto', mt: 0.5 }}>
-              <GitHubIcon fontSize="small" color="primary" />
-            </ListItemIcon>
-            <Box>
-              <MuiLink
-                href="https://github.com/manishneupane0909-eng/pinn-pde-solver"
-                underline="hover"
-                sx={{ color: '#eaf8fa', fontWeight: 600 }}
-              >
-                PINN Benchmarking Suite
-              </MuiLink>
-              <Typography variant="body2" sx={{ color: '#8ca0a3' }}>
-                Comparing physics-informed neural nets vs. FEM for diffusion PDEs — targeting 25%
-                speedup in irregular geometries.
-              </Typography>
-            </Box>
-          </Stack>
-          <Stack direction="row" alignItems="flex-start" spacing={2} sx={{ mb: 2 }}>
-            <ListItemIcon sx={{ minWidth: 'auto', mt: 0.5 }}>
-              <DescriptionIcon fontSize="small" color="primary" />
-            </ListItemIcon>
-            <Box>
-              <MuiLink
-                href="/Resume.pdf"
-                underline="hover"
-                sx={{ color: '#eaf8fa', fontWeight: 600 }}
-              >
-                Magnetometer Analysis Pipeline
-              </MuiLink>
-              <Typography variant="body2" sx={{ color: '#8ca0a3' }}>
-                Automated Ms/Hc extraction from VSM data with ML noise reduction — already cut
-                analysis time by 80%.
-              </Typography>
-            </Box>
-          </Stack>
-          <Stack direction="row" alignItems="flex-start" spacing={2}>
-            <ListItemIcon sx={{ minWidth: 'auto', mt: 0.5 }}>
-              <BuildIcon fontSize="small" color="primary" />
-            </ListItemIcon>
-            <Box>
-              <MuiLink
-                href="https://github.com/manishneupane0909-eng"
-                underline="hover"
-                sx={{ color: '#eaf8fa', fontWeight: 600 }}
-              >
-                Lab Robot Telemetry System
-              </MuiLink>
-              <Typography variant="body2" sx={{ color: '#8ca0a3' }}>
-                Better state recovery and real-time monitoring — applying lessons from Starship fleet
-                ops.
-              </Typography>
-            </Box>
-          </Stack>
-        </Box>
-      </Paper>
-
-      <Paper
         elevation={0}
         sx={{
           p: 4,
@@ -394,10 +335,10 @@ export const Home: React.FC = () => {
           Ideal Next Role
         </Typography>
         <Typography variant="body1" sx={{ color: '#cfe8ea', mb: 3, lineHeight: 1.7 }}>
-          Looking for <strong>R&D, robotics, or software engineering</strong> positions where I can
-          apply physics intuition to real systems. I thrive in <strong>hands-on teams</strong> that
-          value code quality, ship iteratively, and tackle hard problems at the intersection of
-          hardware and software.
+          Looking for <strong>Software Engineer, Full-Stack, or Backend</strong> roles where I can
+          build reliable services, full-stack applications, and automation. I value{' '}
+          <strong>code quality, testing, and shipping iteratively</strong>, and bring a strong
+          systems mindset from robotics and research.
         </Typography>
 
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' }, gap: 2, mb: 3 }}>
@@ -405,19 +346,19 @@ export const Home: React.FC = () => {
             {
               title: 'Great Fit',
               items: [
-                'Robotics / Autonomous Systems',
+                'Full-Stack Web Applications',
+                'Backend & API Development',
+                'Automation & Data Pipelines',
                 'Applied ML / Scientific Computing',
-                'Hardware-Software Integration',
-                'R&D Labs & Deep Tech',
               ],
             },
             {
               title: 'I Bring',
               items: [
+                'Python, JavaScript / TypeScript, React',
+                'FastAPI & Django REST APIs',
+                'Production robotics & research experience',
                 'Physics + CS dual perspective',
-                'Production robotics experience',
-                'Research-to-code pipeline skills',
-                'Strong written communication',
               ],
             },
           ].map((col) => (

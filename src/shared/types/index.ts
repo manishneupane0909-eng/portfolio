@@ -4,7 +4,7 @@ export interface Project {
   name: string;
   tags: string[];
   description: string;
-  highlights: string;
+  bullets: string[];
   github: string | null;
   demo: string | null;
   image: string | null;
@@ -29,4 +29,5 @@ export interface ContactForm {
 }
 
 export type ContactStatus = 'idle' | 'ok' | 'error' | 'loading';
+
 

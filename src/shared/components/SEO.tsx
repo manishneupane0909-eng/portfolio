@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export const SEO: React.FC = () => {
-  const title = 'Manish Neupane – Physics × Code Portfolio';
+  const title = 'Manish Neupane – Software Engineer Portfolio';
   const description =
-    'Physics & CS student at SDSU (Class of 2026) building magnetic materials research tools, robotics systems, and ML applications. Open to R&D/SWE roles.';
+    'Software Engineer (Full-Stack & Backend) and dual-major Physics & CS graduate building reliable software, full-stack applications, and automation with Python, React, FastAPI, Django REST, SQL, Docker, and AWS.';
   const image = '/profile.jpeg';
   const url = typeof window !== 'undefined' ? window.location.origin : '';
 
@@ -27,8 +27,9 @@ export const SEO: React.FC = () => {
           '@type': 'Person',
           name: 'Manish Neupane',
           url,
-          jobTitle: 'Physics & Computer Science Student | Aspiring R&D/SWE Engineer',
-          description: 'Building magnetic materials research tools, robotics systems, and ML applications.',
+          jobTitle: 'Software Engineer (Full-Stack & Backend)',
+          description:
+            'Software engineer building reliable software systems, full-stack applications, and automation tools across web, robotics, and scientific workflows.',
           alumniOf: {
             '@type': 'CollegeOrUniversity',
             name: 'South Dakota State University',
@@ -40,19 +41,24 @@ export const SEO: React.FC = () => {
           ],
           knowsAbout: [
             'Python',
-            'PyTorch',
+            'JavaScript',
+            'TypeScript',
+            'React',
+            'FastAPI',
+            'Django REST Framework',
+            'SQL',
+            'PostgreSQL',
+            'MongoDB',
+            'Docker',
+            'AWS',
+            'REST APIs',
             'Machine Learning',
-            'Robotics',
-            'Physics',
-            'MATLAB',
-            'Data Automation',
-            'Materials Science',
-            'CUDA',
           ],
-          seeks: 'R&D, Robotics, or Software Engineering roles (graduating Spring 2026)',
+          seeks: 'Software Engineer, Full-Stack, or Backend roles (graduating May 2026)',
         })}
       </script>
     </Helmet>
   );
 };
+
 

@@ -1,8 +1,7 @@
 import { Achievement } from '@/shared/types';
 
 export const achievements: Achievement[] = [
-  { metric: '99%', label: 'Robot Fleet Uptime', context: 'at Starship Technologies' },
-  { metric: '80%', label: 'Faster Data Analysis', context: 'via automation scripts' },
-  { metric: '2x', label: 'APS Presenter', context: '2023 & 2024 March Meetings' },
+  { metric: '80%', label: 'Faster Data Analysis', context: 'via an automated Python pipeline' },
+  { metric: '98%', label: 'Robot Fleet Uptime', context: 'across a 10-unit Starship fleet' },
+  { metric: '20%', label: 'Higher Test Throughput', context: 'at Daktronics product engineering' },
 ];
-

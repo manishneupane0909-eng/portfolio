@@ -8,7 +8,13 @@ import {
   Box,
   Alert,
   Container,
+  Stack,
+  Link as MuiLink,
 } from '@mui/material';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import LanguageIcon from '@mui/icons-material/Language';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { ContactForm, ContactStatus } from '@/shared/types';
@@ -17,15 +23,11 @@ const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID ?? '';
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID ?? '';
 const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY ?? '';
 
-if (typeof window !== 'undefined') {
-  console.log('EmailJS env check:', {
-    serviceIdLength: SERVICE_ID.length,
-    templateIdLength: TEMPLATE_ID.length,
-    publicKeyLength: PUBLIC_KEY.length,
-    hasAll: SERVICE_ID && TEMPLATE_ID && PUBLIC_KEY,
-    allEnvKeys: Object.keys(import.meta.env).filter(k => k.startsWith('VITE_')),
-  });
-}
+const EMAIL = 'manishneupane0909@gmail.com';
+const PHONE_DISPLAY = '(605) 691-2858';
+const PHONE_HREF = '+16056912858';
+const LOCATION = 'Brookings, SD';
+const WEBSITE = 'www.mneupane.com';
 
 export const Contact: React.FC = () => {
   const [form, setForm] = useState<ContactForm>({ name: '', email: '', message: '' });
@@ -47,11 +49,6 @@ export const Contact: React.FC = () => {
                        SERVICE_ID.length > 0 && TEMPLATE_ID.length > 0 && PUBLIC_KEY.length > 0;
 
     if (!hasEmailJS) {
-      console.error('EmailJS not configured:', {
-        hasServiceId: !!SERVICE_ID,
-        hasTemplateId: !!TEMPLATE_ID,
-        hasPublicKey: !!PUBLIC_KEY,
-      });
       setStatus('error');
       setTimeout(() => {
         setStatus('idle');
@@ -68,11 +65,7 @@ export const Contact: React.FC = () => {
         message: form.message,
       };
 
-      console.log('Sending email with params:', { SERVICE_ID, TEMPLATE_ID, templateParams });
-
       const result = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
-
-      console.log('EmailJS result:', result);
 
       if (result.status === 200 || result.text === 'OK') {
         setStatus('ok');
@@ -83,8 +76,7 @@ export const Contact: React.FC = () => {
       } else {
         throw new Error(`EmailJS returned status ${result.status}`);
       }
-    } catch (err) {
-      console.error('EmailJS error:', err);
+    } catch {
       setStatus('error');
       setTimeout(() => {
         setStatus('idle');
@@ -106,10 +98,51 @@ export const Contact: React.FC = () => {
           <CardContent>
             <Typography
               variant="h4"
-              sx={{ fontWeight: 700, color: 'primary.main', mb: 2, textAlign: 'center' }}
+              sx={{ fontWeight: 700, color: 'primary.main', mb: 1, textAlign: 'center' }}
             >
               Get in Touch
             </Typography>
+            <Typography variant="body2" sx={{ color: '#a8c5ca', textAlign: 'center', mb: 3 }}>
+              Open to Software Engineer, Full-Stack, and Backend roles. I reply fast on email.
+            </Typography>
+
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)' },
+                gap: 1.5,
+                mb: 3,
+              }}
+            >
+              <Stack direction="row" spacing={1.5} alignItems="center">
+                <EmailIcon fontSize="small" color="primary" />
+                <MuiLink href={`mailto:${EMAIL}`} underline="hover" sx={{ color: '#cddede', fontSize: '0.85rem' }}>
+                  {EMAIL}
+                </MuiLink>
+              </Stack>
+              <Stack direction="row" spacing={1.5} alignItems="center">
+                <PhoneIcon fontSize="small" color="primary" />
+                <MuiLink href={`tel:${PHONE_HREF}`} underline="hover" sx={{ color: '#cddede', fontSize: '0.85rem' }}>
+                  {PHONE_DISPLAY}
+                </MuiLink>
+              </Stack>
+              <Stack direction="row" spacing={1.5} alignItems="center">
+                <LocationOnIcon fontSize="small" color="primary" />
+                <Typography sx={{ color: '#cddede', fontSize: '0.85rem' }}>{LOCATION}</Typography>
+              </Stack>
+              <Stack direction="row" spacing={1.5} alignItems="center">
+                <LanguageIcon fontSize="small" color="primary" />
+                <MuiLink
+                  href={`https://${WEBSITE}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="hover"
+                  sx={{ color: '#cddede', fontSize: '0.85rem' }}
+                >
+                  {WEBSITE}
+                </MuiLink>
+              </Stack>
+            </Box>
 
             {status === 'ok' && (
               <Alert severity="success" sx={{ mb: 2 }}>
@@ -189,7 +222,7 @@ export const Contact: React.FC = () => {
                 <Button
                   variant="outlined"
                   color="secondary"
-                  href="mailto:hi@mneupane.com"
+                  href={`mailto:${EMAIL}`}
                   sx={{ flex: { xs: 1, sm: 'none' } }}
                 >
                   Email directly
@@ -202,4 +235,3 @@ export const Contact: React.FC = () => {
     </Container>
   );
 };
-// Trigger rebuild with env vars

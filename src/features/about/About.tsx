@@ -14,6 +14,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import CodeIcon from '@mui/icons-material/Code';
+import ArticleIcon from '@mui/icons-material/Article';
 
 interface SkillCategory {
   title: string;
@@ -22,56 +23,88 @@ interface SkillCategory {
 }
 
 const skillCategories: SkillCategory[] = [
-  { title: 'Languages', skills: ['Python', 'C', 'JavaScript', 'MATLAB'], color: 'primary' },
   {
-    title: 'ML & Data',
-    skills: ['PyTorch', 'NumPy', 'SciPy', 'CUDA', 'Pandas'],
+    title: 'Languages',
+    skills: ['Python', 'JavaScript', 'TypeScript', 'SQL', 'C#', 'Java', 'Go', 'C/C++'],
+    color: 'primary',
+  },
+  {
+    title: 'Frameworks',
+    skills: ['React', 'FastAPI', 'Django REST Framework', '.NET'],
     color: 'secondary',
   },
-  { title: 'Tools & Infra', skills: ['Git', 'MongoDB', 'FastAPI', 'React', 'Linux'], color: 'primary' },
   {
-    title: 'Domain',
-    skills: ['Robotics', 'Signal Processing', 'Materials Science', 'Scientific Computing'],
+    title: 'Databases / Tools',
+    skills: [
+      'PostgreSQL',
+      'MongoDB',
+      'Redis',
+      'Docker',
+      'AWS',
+      'Git',
+      'REST APIs',
+      'JWT',
+      'Celery',
+      'Chart.js',
+      'Origin',
+    ],
+    color: 'primary',
+  },
+  {
+    title: 'Concepts',
+    skills: ['Data Structures & Algorithms', 'OOP', 'TDD', 'Clean Code', 'Hardware-Software Integration'],
     color: 'secondary',
+  },
+  {
+    title: 'ML / Scientific Computing',
+    skills: ['PyTorch', 'NumPy', 'SciPy', 'PINNs', 'XRD', 'VSM'],
+    color: 'primary',
   },
 ];
 
 interface Experience {
   role: string;
   company: string;
+  location: string;
   period: string;
   highlights: string[];
 }
 
 const experience: Experience[] = [
   {
-    role: 'Research Assistant',
-    company: 'SDSU Magnetic Materials Lab',
-    period: '2022 – Present',
-    highlights: [
-      'Led Heusler alloy synthesis & characterization (APS 2023/24 presenter)',
-      'Built automated VSM/PPMS data pipelines → 80% faster analysis',
-      'Co-authored research on MnBi-Fe composite permanent magnets',
-    ],
-  },
-  {
-    role: 'Robotics Operator',
-    company: 'Starship Technologies',
-    period: '2023 – Present',
-    highlights: [
-      'Managed autonomous delivery fleet operations across campus',
-      'Improved recovery protocols → contributed to 99% fleet uptime',
-      'Developed internal telemetry monitoring tools',
-    ],
-  },
-  {
-    role: 'Software Engineering Intern',
+    role: 'Product Engineering Intern',
     company: 'Daktronics',
-    period: 'Summer 2022',
+    location: 'Brookings, SD',
+    period: 'May 2024 – Present',
     highlights: [
-      'Built visualization tools for LED display systems',
-      'Reduced hardware testing cycles by 50% with simulator',
-      'Integrated data pipelines for real-time display content',
+      'Optimized production test procedures and supported New Product Introduction workflows, increasing throughput by 20%.',
+      'Debugged LED display control logic and resolved failure patterns, reducing hardware rejection rates by 10%.',
+      'Analyzed defect trends across display and control systems to improve reliability and support continuous product improvement.',
+      'Collaborated with cross-functional production and engineering teams to identify bottlenecks and improve test efficiency.',
+    ],
+  },
+  {
+    role: 'Undergraduate Research Assistant',
+    company: 'South Dakota State University',
+    location: 'Brookings, SD',
+    period: 'Aug 2021 – Present',
+    highlights: [
+      'Architected an automated Python pipeline using SciPy and VSM integration to batch-process 500+ magnetometer datasets, cutting analysis time from 2 days to 4 hours (80% faster).',
+      'Characterized MnBi-based composite magnets using XRD and VersaLab magnetometry to guide material synthesis decisions.',
+      'Analyzed experimental data in Origin software, improving project outcomes by 15%.',
+      'Co-authored 3 publications and abstracts and presented findings at APS March Meetings (2023, 2024).',
+    ],
+  },
+  {
+    role: 'Software & Operations Technician',
+    company: 'Starship Technologies',
+    location: 'Brookings, SD',
+    period: 'Jan 2022 – May 2023',
+    highlights: [
+      'Developed and deployed Python and Go scripts for firmware updates and runtime code modifications on autonomous delivery robots.',
+      'Diagnosed failures across sensors, GPS, motors, cameras, and batteries to maintain 98% uptime for a 10-unit fleet.',
+      'Analyzed fleet telemetry to identify inefficiencies, improving delivery efficiency and user satisfaction by 15%.',
+      'Supported software and hardware troubleshooting in a production robotics environment focused on system reliability.',
     ],
   },
 ];
@@ -116,8 +149,7 @@ export const About: React.FC = () => {
                 Manish Neupane
               </Typography>
               <Typography variant="h6" sx={{ color: '#a8c5ca', fontWeight: 400, mb: 2 }}>
-                Physics × Computer Science · Building tools at the intersection of science and
-                software
+                Software Engineer · Full-Stack &amp; Backend · Physics &amp; CS, SDSU
               </Typography>
               <Stack
                 direction="row"
@@ -128,13 +160,13 @@ export const About: React.FC = () => {
               >
                 <Chip
                   icon={<SchoolIcon />}
-                  label="BS Physics + CS @ SDSU '26"
+                  label="B.S. Physics & CS · SDSU '26"
                   size="small"
                   sx={{ bgcolor: 'rgba(0,234,255,0.1)', color: 'primary.main' }}
                 />
                 <Chip
                   icon={<WorkIcon />}
-                  label="Open to Opportunities"
+                  label="Open to SWE Roles"
                   size="small"
                   color="secondary"
                 />
@@ -186,7 +218,7 @@ export const About: React.FC = () => {
                         {exp.role}
                       </Typography>
                       <Typography variant="body2" sx={{ color: 'primary.main', fontWeight: 600 }}>
-                        {exp.company}
+                        {exp.company} · {exp.location}
                       </Typography>
                     </Box>
                     <Chip
@@ -234,19 +266,28 @@ export const About: React.FC = () => {
                   </Typography>
                 </Stack>
                 <Typography variant="body1" sx={{ fontWeight: 600, color: '#eaf8fa' }}>
-                  B.S. Physics & Computer Science
+                  B.S. in Physics & Computer Science
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'primary.main' }}>
-                  South Dakota State University
+                  South Dakota State University · Brookings, SD
                 </Typography>
                 <Typography
                   variant="caption"
                   sx={{
                     color: '#8ca0a3',
                     fontFamily: "'Source Code Pro', monospace",
+                    display: 'block',
+                    mb: 1.5,
                   }}
                 >
-                  Expected Spring 2026
+                  Aug 2021 – May 2026
+                </Typography>
+                <Typography variant="overline" sx={{ color: '#6b8a8f', fontSize: '0.65rem' }}>
+                  Relevant Coursework
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#b8cfd3', lineHeight: 1.6 }}>
+                  Data Structures & Algorithms · Operating Systems · Machine Learning ·
+                  Computational Physics · Software Engineering · Database Systems
                 </Typography>
               </Paper>
             </motion.div>
@@ -316,14 +357,47 @@ export const About: React.FC = () => {
                 </Stack>
                 <Box component="ul" sx={{ m: 0, pl: 2, color: '#b8cfd3' }}>
                   <Typography component="li" variant="body2" sx={{ mb: 1 }}>
+                    <strong style={{ color: '#00eaff' }}>URSCAD Outstanding Student Achievement in
+                    Research</strong> (Spring 2022, Spring 2024)
+                  </Typography>
+                  <Typography component="li" variant="body2" sx={{ mb: 1 }}>
                     <strong style={{ color: '#ff79c6' }}>APS March Meeting</strong> Presenter (2023,
                     2024)
                   </Typography>
-                  <Typography component="li" variant="body2" sx={{ mb: 1 }}>
-                    <strong style={{ color: '#00eaff' }}>Dean's List</strong> – SDSU (2022–2024)
-                  </Typography>
                   <Typography component="li" variant="body2">
-                    <strong style={{ color: '#00eaff' }}>Undergraduate Research Scholarship</strong>
+                    <strong style={{ color: '#00eaff' }}>Outstanding First Year Residential
+                    Assistant</strong>
+                  </Typography>
+                </Box>
+              </Paper>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Paper
+                elevation={6}
+                sx={{ p: 3, background: 'rgba(24,38,44,0.85)', borderRadius: 4 }}
+              >
+                <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 2 }}>
+                  <ArticleIcon color="primary" />
+                  <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                    Publications
+                  </Typography>
+                </Stack>
+                <Box component="ul" sx={{ m: 0, pl: 2, color: '#b8cfd3' }}>
+                  <Typography component="li" variant="body2" sx={{ mb: 1, lineHeight: 1.5 }}>
+                    Enhancing Soft Magnetic Properties of Fe<sub>72</sub>Nb<sub>4</sub>Cu<sub>1</sub>
+                    Si<sub>16-x</sub>Ge<sub>x</sub>B<sub>7</sub> by Increasing Ge Concentration.
+                  </Typography>
+                  <Typography component="li" variant="body2" sx={{ mb: 1, lineHeight: 1.5 }}>
+                    Investigation of MnBi-based Composite Magnets. APS March Meeting, 2023.
+                  </Typography>
+                  <Typography component="li" variant="body2" sx={{ lineHeight: 1.5 }}>
+                    Improving MnAl tetragonal phase stability through doping elements. APS March
+                    Meeting, 2024.
                   </Typography>
                 </Box>
               </Paper>
@@ -349,7 +423,8 @@ export const About: React.FC = () => {
           }}
         >
           <Typography variant="body1" sx={{ color: '#cddede', mb: 1 }}>
-            Want to chat? I'm always happy to discuss physics, robotics, or potential opportunities.
+            Open to Software Engineer, Full-Stack, and Backend roles. Happy to talk through projects
+            or opportunities.
           </Typography>
           <Stack
             direction="row"
