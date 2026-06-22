@@ -27,7 +27,7 @@ export const projectsList: Project[] = [
       'Connected scientific data processing with a modern React interface to support lab analysis and experimentation.',
     ],
     github: 'https://github.com/manishneupane0909-eng/ElementX',
-    demo: null,
+    demo: 'https://elementx-frontend.onrender.com',
     image: null,
     featured: true,
   },
